@@ -1,0 +1,37 @@
+<!-- form  for creating new blog -->
+<form class="container myform my-5 p-4" style="border-radius: 15px;width: 70%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+" action="/blog/create" method="post">
+    <div class="mb-3">
+
+        <label for="exampleFormControlInput1" class="form-label">Title
+
+        </label>
+        <input type="text" class="form-control" name="Title"
+            id="exampleFormControlInput1" placeholder="Enter Title of Blog "
+            required>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1"
+            class="form-label">Category</label>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>General</option>
+            <option value="1">Technology</option>
+            <option value="2">Health care</option>
+            <option value="3">Business</option>
+            <option value="4">Movies</option>
+            <option value="5">sports</option>
+            <option value="6">Politics</option>
+            <option value="7">Nature</option>
+            <option value="8">Economics</option>
+            <option value="9">other</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Body</label>
+        <textarea name="Body" class="form-control"
+            placeholder="Enter blog body here" id="exampleFormControlTextarea1"
+            rows="5" cols="50" required></textarea>
+    </div>
+    <button type="submit" id="mybutton"
+        class="btn btn-primary mx-3">create</button>
+</form>

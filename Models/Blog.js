@@ -16,11 +16,15 @@ const BlogSchema = new Schema({
         type: String,
         default: "General"
     }
+    , img: {
+        data: Buffer,
+        contentType: String
+    }
     ,
     date: { type: Date, default: Date.now },
 })
 
 // creating Blog model with collection name blogs
-const Blog = mongoose.model('MyBlogs', BlogSchema);
+const Blog = mongoose.model('Blogs', BlogSchema);
 
 module.exports = Blog;

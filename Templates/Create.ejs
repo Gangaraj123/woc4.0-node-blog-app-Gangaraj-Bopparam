@@ -1,37 +1,69 @@
 <!-- form  for creating new blog -->
-<form class="container myform my-5 p-4" style="border-radius: 15px;width: 70%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-" action="/blog/create" method="post">
-    <div class="mb-3">
+<form class="container myform my-5 p-3" " action=" /blog/create" method="post"
+    enctype="multipart/form-data">
+    <div class="container row">
+        <div class="col-md-8">
+            <h1 class="container my-3 mx-5">Create your blog</h1>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title
+                </label>
+                <input type="text" class="form-control" name="Title"
+                    id="exampleFormControlInput1"
+                    placeholder="Enter Title of Blog " required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1"
+                    class="form-label">Category</label>
+                <select id="cat" name="cat" class="form-select"
+                    aria-label="Default select example" required>
+                    <option value="" selected disabled hidden>select
+                        category</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Health Care">Health care</option>
+                    <option value="Business">Business</option>
+                    <option value="Movies">Movies</option>
+                    <option value="sports">sports</option>
+                    <option value="Politics">Politics</option>
+                    <option value="Nature">Nature</option>
+                    <option value="Economics">Economics</option>
+                    <option value="General">other</option>
+                </select>
+            </div>
+        </div>
+        <div
+            class="justify-content-center p-2 border border-dark container col-md-3">
+            <div>
 
-        <label for="exampleFormControlInput1" class="form-label">Title
-
-        </label>
-        <input type="text" class="form-control" name="Title"
-            id="exampleFormControlInput1" placeholder="Enter Title of Blog "
-            required>
+                <img style="width: 225px;height: 210px;border-radius: 5px;"
+                    src="/Preview.png" id="imgupload" alt="preview">
+            </div>
+            <div style="display: flex;">
+                <label for="myfile"
+                    style="width: 50%;margin-left: auto;margin-right: auto;margin-top:5px;">
+                    <span class="btn "
+                        style="background-color: rgb(204, 0, 255)">
+                        <img style="width:20px;height:20px;"
+                            src="/fileUpload.png" alt="">
+                        <input style="height:0.1em;width: 0.1em;opacity: 0;"
+                            type="file" id="myfile" name="myfile"
+                            onchange="showimage(this)" required
+                            accept="image/*">
+                        <strong>upload</strong>
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1"
+                class="form-label">Body</label>
+            <textarea name="Body" class="form-control"
+                placeholder="Enter blog body here"
+                id="exampleFormControlTextarea1" rows="5" cols="50"
+                required></textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" id="mybutton" class="btn btn-primary mx-3">
+                create</button>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1"
-            class="form-label">Category</label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>General</option>
-            <option value="1">Technology</option>
-            <option value="2">Health care</option>
-            <option value="3">Business</option>
-            <option value="4">Movies</option>
-            <option value="5">sports</option>
-            <option value="6">Politics</option>
-            <option value="7">Nature</option>
-            <option value="8">Economics</option>
-            <option value="9">other</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Body</label>
-        <textarea name="Body" class="form-control"
-            placeholder="Enter blog body here" id="exampleFormControlTextarea1"
-            rows="5" cols="50" required></textarea>
-    </div>
-    <button type="submit" id="mybutton"
-        class="btn btn-primary mx-3">create</button>
 </form>

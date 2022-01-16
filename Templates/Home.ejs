@@ -9,8 +9,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div style="float: left;" class="mx-2">
-                                <img src="https://source.unsplash.com/200x180/?$<%=blog.category%>"
-                                    alt="">
+                                <img style="width: 200px;height:180px;border-radius:5px;"
+                                    src="data:image/<%=blog.img.contentType%>;base64,
+                        <%=blog.img.data.toString('base64')%>">
                             </div>
                             <h5 class="card-title">
                                 <%=blog.Title %>

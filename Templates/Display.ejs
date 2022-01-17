@@ -1,24 +1,37 @@
 <div class="container my-2  rounded border border-2 border-dark"
     style="background-color: white;width: 70%;">
     <div class="border p-5">
-
         <h1 class="my-1 mx-2" style="color: red;">
             <%= blog.Title %>
         </h1>
-        <div>
-            <a href="/blog/delete/<%=blog._id%>">
-                <button class="btn btn-danger"><svg
-                        xmlns="http://www.w3.org/2000/svg" width="16"
-                        height="16" fill="currentColor" class="bi bi-trash"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                        <path fill-rule="evenodd"
-                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                    </svg> Delete</button>
-            </a>
+        <div class="mx-4">
+            <h6><strong>
+                    category:
+                </strong>
+                <span>
+                    <%=blog.category%>
+                </span>
+            </h6>
+            <h6>
+                <strong>created:</strong>
+                <span>
+                    <%=blog.date%>
+                </span>
+            </h6>
+        </div>
+        <div style="border-radius: 10px;" class="my-3">
+
+            <img style="width:45%;height:35%;margin: auto;display: block;" src="data:image/<%=blog.img.contentType%>;base64,
+            <%=blog.img.data.toString('base64')%>">
+        </div>
+
+        <p>
+            <%=blog.Body %>
+        </p>
+
+        <div class="d-flex justify-content-center">
             <a href="/blog/edit/<%=blog._id%>">
-                <button class="btn btn-warning">
+                <button class="btn btn-warning mx-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" fill="currentColor"
                         class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -29,22 +42,40 @@
                     </svg> Edit
                 </button>
             </a>
+            <button class="btn btn-danger mx-1" type="button"
+                data-bs-toggle="modal" data-bs-target="#exampleModal"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd"
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                </svg> Delete</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are
+                                you Sure?</h5>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This blog will be deleted permanently</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                            <a href="/blog/delete/<%=blog._id%>">
+                                <button type="button"
+                                    class="btn btn-danger">confirm</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- adding temporary image links for now-->
-        <div style="border-radius: 10px;" class="my-3">
-
-            <img style="width:45%;height:35%;margin: auto;display: block;" src="data:image/<%=blog.img.contentType%>;base64,
-            <%=blog.img.data.toString('base64')%>">
-        </div>
-
-        <p>
-            <%=blog.Body %>
-        </p>
-        <p><strong>category:</strong>
-            <%=blog.category%>
-        </p>
-        <p><strong>created:</strong>
-            <%=blog.date%>
-        </p>
     </div>
 </div>

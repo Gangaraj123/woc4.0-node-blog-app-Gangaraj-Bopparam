@@ -1,12 +1,12 @@
 # woc4.0-node-blog-app-Gangaraj-Bopparam
 
 Repository for winter-of-code 4.0, DAIICT !
-<<<<<<< HEAD
 
 First checkpoint in project
+=======
+
 Added the layout for Home,view and create pages were added
 all the functionalities like saving blogs into database were not fully implemented
-=======
 
 First checkpoint in project  
 Added the layout for Home,view and create pages were added  
@@ -22,19 +22,19 @@ create Page
 
 View page
 ![Screenshot_3](https://user-images.githubusercontent.com/96531549/149365466-39e3df45-fd4c-4d7c-a60b-37068cb33088.png)
->>>>>>> c725b2446e460f17246f15f59cf1351b99a42bef
 
 Second CheckPoint in project
 =====
 
-Added:  
+ Added:  
 1)Create blog (saving in database)  
 2)View blog (from database)  
 Now the created blogs won't be lost even after reloading, they will be saved in databse.  
+<<<<<<< HEAD
 
 ### Preview for checkpoint 2  
 
-creating blog:  
+ creating blog:  
 The updated layout for create page looks like  
 ![Screenshot_1](https://user-images.githubusercontent.com/96531549/149667989-aa7d4475-fed4-47ce-a572-1bf52fa19328.png)  
 Now an image can be choosen for the blog that we are creating.  
@@ -67,4 +67,4 @@ By Clicking on edit button, it will redirect to edit page as shwon below
 After making changes, clicking on update button will update this blog in database.  
 2)Deleting a blog  
 In the view page, on clicking delete button an modal will popup to confirm deletion and on confirming, the blog will be deleted from database and redirects to home page  
-![Screenshot_11](https://user-images.githubusercontent.com/96531549/149670744-d1a85722-0e25-47f9-be41-0925224276a9.png)  
+![Screenshot_11](https://user-images.githubusercontent.com/96531549/149670744-d1a85722-0e25-47f9-be41-0925224276a9.png)

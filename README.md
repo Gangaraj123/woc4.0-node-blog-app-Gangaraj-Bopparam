@@ -22,6 +22,7 @@ create Page
 
 View page
 ![Screenshot_3](https://user-images.githubusercontent.com/96531549/149365466-39e3df45-fd4c-4d7c-a60b-37068cb33088.png)
+<<<<<<< HEAD
 
 Second CheckPoint in project
 =====
@@ -35,6 +36,18 @@ Now the created blogs won't be lost even after reloading, they will be saved in 
 ### Preview for checkpoint 2  
 
  creating blog:  
+=======
+>>>>>>> c725b2446e460f17246f15f59cf1351b99a42bef
+
+Second CheckPoint in project
+=====
+Added:  
+1)Create blog (saving in database)  
+2)View blog (from database)  
+Now the created blogs won't be lost even after reloading, they will be saved in databse.  
+### Preview for checkpoint 2  
+creating blog:  
+>>>>>>> 05448d5c21fb14bf6c287fac330b219ca9302312
 The updated layout for create page looks like  
 ![Screenshot_1](https://user-images.githubusercontent.com/96531549/149667989-aa7d4475-fed4-47ce-a572-1bf52fa19328.png)  
 Now an image can be choosen for the blog that we are creating.  
@@ -47,6 +60,7 @@ On homepage , the recently created blog will be shown on the top
 ![Screenshot_3](https://user-images.githubusercontent.com/96531549/149668209-ec5ef11c-bcf1-4d57-812b-399c4dd54ddb.png)  
 
 2)view blog  
+<<<<<<< HEAD
 By clicking on the viewblog button in thumbnail of a blog, it will redirect to view page as shown below
 
 ![Screenshot_4](https://user-images.githubusercontent.com/96531549/149668268-21718a8c-4772-4bb0-be0d-da4f92d856dc.png)
@@ -68,3 +82,8 @@ After making changes, clicking on update button will update this blog in databas
 2)Deleting a blog  
 In the view page, on clicking delete button an modal will popup to confirm deletion and on confirming, the blog will be deleted from database and redirects to home page  
 ![Screenshot_11](https://user-images.githubusercontent.com/96531549/149670744-d1a85722-0e25-47f9-be41-0925224276a9.png)
+=======
+By clicking on the viewblog button in thumbnail of a blog, it will redirect to view page as shown below 
+
+![Screenshot_4](https://user-images.githubusercontent.com/96531549/149668268-21718a8c-4772-4bb0-be0d-da4f92d856dc.png)
+>>>>>>> 05448d5c21fb14bf6c287fac330b219ca9302312

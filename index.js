@@ -3,23 +3,43 @@ const express = require('express'); // importing express
 const fileUpload = require('express-fileupload');
 const path = require('path')
 const Blog = require('./Models/Blog');
+require('dotenv').config({ path: path.join(__dirname, '/.env') });
 const ConnectToMongoose = require('./Models/db');
 const app = express(); // creating an instance of express
 
 ConnectToMongoose(app);// connecting to db
-app.set('view engine', 'ejs'); // registering view engine
-app.use(express.urlencoded({ extended: true })); //middle ware to get the data submitted by forms
-app.use(express.static(path.join(__dirname, 'Components'))) // using Components folder as static
-app.use(fileUpload()) // middleware for managing file uploads(images in this case)
-app.use('/blog', require("./Routes/BlogRoutes")); //middlware for blog route
 
-//HOme page
+// registering view engine
+app.set('view engine', 'ejs');
+
+// middleware to get fetchrequest in json form
+app.use(express.json())
+
+//middle ware to get the data submitted by forms
+app.use(express.urlencoded({ extended: true }));
+
+// using Components folder as static
+app.use(express.static(path.join(__dirname, 'Components')))
+
+// middleware for managing file uploads(images in this case)
+app.use(fileUpload())
+
+//middlware for blog route
+app.use('/blog', require("./Routes/BlogRoutes"));
+
+// middleware for login and singup
+app.use('/auth', require("./Routes/AuthRoutes"));
+
+
+//Home page
 app.get('/', (req, res) => {
-    Blog.find()
+    Blog.find() // getting all blogs and sendig it to basic page
         .then(result => {
             res.render('../Templates/basic', { page: "Home", Curr_blogs: result.reverse() })
         })
 })
+
+// Notfound page for other urls
 app.get('/*', (req, res) => {
     res.render('../Templates/NotFound')
 })

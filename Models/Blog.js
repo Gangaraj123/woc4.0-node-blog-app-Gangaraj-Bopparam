@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
+    user: { // adding a user for a blog
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     Title: {
         type: String,
         required: true
@@ -25,6 +29,6 @@ const BlogSchema = new Schema({
 })
 
 // creating Blog model with collection name blogs
-const Blog = mongoose.model('Blogs', BlogSchema);
+const Blog = mongoose.model('testBlogs', BlogSchema);
 
 module.exports = Blog;

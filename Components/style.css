@@ -1,3 +1,4 @@
+ /* css file to style all the elements */
 .nav-item {
     display: inline-block;
     position: relative;
@@ -25,7 +26,7 @@
    text-decoration:none; 
   }
   body{
-    background: rgb(225, 225, 228);
+    background: rgb(10, 10, 10);
 }
 .myform{
   background: white;
@@ -53,3 +54,68 @@
  .error-template {padding: 40px 15px;text-align: center;}
  .error-actions {margin-top:15px;margin-bottom:15px;}
  .error-actions .btn { margin-right:10px; }
+ .main{
+	width: 400px;
+	height: 400px;
+	background: red;
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
+  background-color: white;
+   font-family: 'Jost', sans-serif;
+
+ }
+.auth-input{
+	width: 300px;
+	height: 50px;
+	background: #f2f2f2;
+	justify-content: center;
+	display: flex;
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid rgb(194, 188, 188);
+	outline: none;
+	border-radius: 5px;
+}
+.authbutton{
+	width: 300px;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #4caf50;
+	font-size: 1em;
+	font-weight: bold;
+ 	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+.authbutton:hover{
+	background: #4dcc4d;
+}
+.authlabel{
+  color: rgb(20, 107, 20);
+	font-size: 2.6em;
+	justify-content: center;
+	display: flex;
+  	font-weight:bolder;
+	cursor: pointer;
+	transition: .5s ease-in-out;
+}
+.signbutton
+{
+  width: fit-content;
+  cursor: pointer;
+        border: 1px solid white;
+        border-radius: 1em;
+        background-color: transparent;
+        color: white;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.6);
+}
+.signbutton:hover{
+  background-color: rgb(228, 210, 210);
+  font-weight: bold;
+}

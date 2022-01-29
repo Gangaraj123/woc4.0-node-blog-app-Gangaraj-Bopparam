@@ -1,8 +1,7 @@
 const express = require('express');
-const { result } = require('lodash');
 const { ObjectId } = require('mongodb');
 const Router = express.Router();
-const Blog = require('../Models/Blog')
+const Blog = require('../Models/Blog');
 
 // Route for viewing individual blogs
 Router.get('/view/:id', (req, res) => {
@@ -13,6 +12,7 @@ Router.get('/view/:id', (req, res) => {
         })
 })
 
+// router for editing blog
 Router.get('/edit/:id', (req, res) => {
     Blog.findById(new ObjectId(req.params.id))
         .then(result => {
@@ -20,6 +20,7 @@ Router.get('/edit/:id', (req, res) => {
         })
 })
 
+// router for updating blog
 Router.post('/update/:id', (req, res) => {
     const blog = {
         Title: req.body.Title,
@@ -35,6 +36,7 @@ Router.post('/update/:id', (req, res) => {
         })
 })
 
+// router for deleting blog
 Router.get('/delete/:id', (req, res) => {
     Blog.findByIdAndDelete(new ObjectId(req.params.id))
         .then
@@ -45,20 +47,20 @@ Router.get('/delete/:id', (req, res) => {
             }
         )
 })
+
 // Route for Creating Blog - filling data
 Router.get('/create', (req, res) => {
     res.render('../Templates/Basic', { page: 'create' });
 })
-
 // Route for saving blog
 Router.post('/create', (req, res) => {
     const newblog = {
         Title: req.body.Title,
         Body: req.body.Body,
+        user: req.body.id,
         category: req.body.cat,
         img: req.files.myfile
     }
-
     Blog(newblog).save()
         .then(
             (result) => {

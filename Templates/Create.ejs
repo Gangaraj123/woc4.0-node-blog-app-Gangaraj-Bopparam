@@ -1,6 +1,7 @@
 <!-- form  for creating new blog -->
-<form class="container myform my-5 p-3" " action=" /blog/create" method="post"
-    enctype="multipart/form-data">
+<form class="container myform my-5 p-3"
+    onsubmit="event.preventDefault();CreateBlog();" id="createform"
+    action="/blog/create" method="post" enctype="multipart/form-data">
     <div class="container row">
         <div class="col-md-8">
             <h1 class="container my-3 mx-5">Create your blog</h1>
@@ -10,6 +11,7 @@
                 <input type="text" class="form-control" name="Title"
                     id="exampleFormControlInput1"
                     placeholder="Enter Title of Blog " required>
+
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1"

@@ -1,3 +1,4 @@
+ <!-- Navigation bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -31,5 +32,57 @@
 
             </ul>
         </div>
+         <!-- Login and logout buttons -->
+         <button class="btn btn-dark" onclick="flipicon()">
+             <i class="fas fa-adjust" id="night"></i>
+         </button >
+            <div id="inbtns">
+                <a href="/auth/signup">
+                    <button class=" mx-1 btn btn-sm signbutton" >
+                    sign up
+                </button>
+            </a>
+            <a href="/auth/login">
+                <button class="mx-1 btn btn-sm signbutton">
+                    Log in
+                </button>
+            </a>
+        </div>
+        <div id="outbtns" style="display: none;">
+
+            <button class=" mx-1 btn btn-sm signbutton" onclick="logout()">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                logout
+            </button>
+
+        </div>
     </div>
 </nav>
+<script>
+    let mode='night';
+    if (localStorage.getItem('token')) {
+        document.getElementById('outbtns').style.display = "block";
+        document.getElementById('inbtns').style.display = "none";
+    }
+    else {
+        document.getElementById('outbtns').style.display = "none";
+        document.getElementById('inbtns').style.display = "block";
+
+    }
+    function logout() {
+        localStorage.clear();
+        window.location.reload();
+    }
+    function flipicon()
+    {
+        if(mode==="night"){
+            mode='light'
+            document.body.style.backgroundColor="#c5c4c4";
+        document.getElementById('night').style.transform='scaleX(-1)';}
+        else{
+        mode='night';
+        document.body.style.backgroundColor="black";
+        document.getElementById('night').style.transform='scaleX(1)';}
+        console.log("clicked")
+    }
+</script>

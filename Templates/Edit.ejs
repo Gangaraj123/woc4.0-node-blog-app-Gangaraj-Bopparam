@@ -1,6 +1,6 @@
-<!-- form  for creating new blog -->
-<form class="container myform my-5 p-3" " action=" /blog/update/<%=blog._id%>"
-    method="post"
+<!-- form  for editing a blog -->
+<form class="container myform my-5 p-3" id="myform"
+    action=" /blog/update/<%=blog._id%>" method="post"
     enctype="multipart/form-data">
     <div class="container row">
         <div class="col-md-8">
@@ -11,6 +11,8 @@
                 <input type="text" class="form-control" name="Title"
                     id="exampleFormControlInput1" value="<%=blog.Title%>"
                     required>
+                <input type="text" class="form-control" name="authtoken"
+                    id="secrettoken" style="display: none;">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1"

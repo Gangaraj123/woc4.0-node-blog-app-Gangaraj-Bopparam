@@ -1,10 +1,12 @@
+<!-- Home page where all blogs are displayed -->
 <div class="container my-4">
     <div class="row ">
-        <% if(curr_blogs.length>0) { %>
-            <h1 class="mx-5" style=" color: rgb(214, 19, 19);font-weight: 700;">
+        <% if(locals.curr_blogs && curr_blogs.length>0){%>
+            <h1 class="mx-5" style=" color: rgb(255, 255, 255);font-weight: 700;">
                 All
                 Blogs</h1>
             <% curr_blogs.forEach(blog=> { %>
+                <% console.log(blog.Title.length) %> 
                 <div class="container col-md-5 my-4 mx-4 ">
                     <div class="card">
                         <div class="card-body">
@@ -17,7 +19,7 @@
                                 <%=blog.Title %>
                             </h5>
                             <p class="card-text">
-                                <%=blog.Body.slice(0,100)+"...." %>
+                                <%=blog.Body.slice(0,(blog.Title.length>60?50:70))+"...." %>
                             </p>
                             <p>
                                 <strong>category:</strong>
@@ -41,5 +43,6 @@
                         </a>
                     </div>
                     <% } %>
+
     </div>
 </div>

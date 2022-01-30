@@ -67,5 +67,26 @@
             <button type="submit" id="mybutton" class="btn btn-primary mx-3">
                 create</button>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="height:200px;">
+                        <h3  id="creatingmsg">creating...</h3>
+                        <div class="cprogress">
+                            <div class="cprogress-done" id="cprogress-done">50%
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
+<div class="container" id="notloggedin" style="display: none;">
+    <%- include("./NotLogged.ejs") %>
+</div>
+<script>
+    if (!localStorage.getItem('token')) {
+        document.getElementById('createform').style.display = 'none';
+        document.getElementById('notloggedin').style.display = 'block';
+    }
+</script>

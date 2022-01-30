@@ -21,7 +21,9 @@
 <body>
 
     <!--including navbar -->
-    <%- include("./Navbar.ejs",{active:page}) %>
+    <% if (page!=='signup'&&page!=='login') { %>
+        <%- include("./Navbar.ejs",{active:page}) %>
+    <% } %>
 
     <!--setting layout depending on page-->
     <% switch(page){ case 'create' : {%>
@@ -29,7 +31,11 @@
     <% break ; } %>
 
     <% case 'Home' : {%>
-        <%- include("./Home.ejs",{curr_blogs:Curr_blogs}) %>
+        <%- include("./Home.ejs",{blogs:blogs}) %>
+    <% break; } %>
+    
+    <% case 'yourblogs' : {%>
+        <%- include("./YourBlogs.ejs",{blogs:blogs}) %>
     <% break; } %>
     
     <% case 'edit' : {%>
@@ -47,7 +53,7 @@
     <% case 'login':{%>
         <%- include("./Login.ejs") %>
     <%break;}%>
-
+        
     <% default:{%>
         <%- include("./NotFound.ejs")%>
     <%}}%>

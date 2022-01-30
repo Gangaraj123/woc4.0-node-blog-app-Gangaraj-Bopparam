@@ -5,6 +5,7 @@ const path = require('path')
 const Blog = require('./Models/Blog');
 require('dotenv').config({ path: path.join(__dirname, '/.env') });
 const ConnectToMongoose = require('./Models/db');
+const User = require('./Models/User');
 const app = express(); // creating an instance of express
 
 ConnectToMongoose(app);// connecting to db
@@ -33,10 +34,12 @@ app.use('/auth', require("./Routes/AuthRoutes"));
 
 //Home page
 app.get('/', (req, res) => {
-    Blog.find() // getting all blogs and sendig it to basic page
-        .then(result => {
-            res.render('../Templates/basic', { page: "Home", Curr_blogs: result.reverse() })
-        })
+    Blog.find()
+    .then(
+        result=>{
+            res.render('../Templates/basic', { page: "Home",blogs:result})
+        }
+    )
 })
 
 // Notfound page for other urls
@@ -44,3 +47,4 @@ app.get('/*', (req, res) => {
     res.render('../Templates/NotFound')
 })
 
+    

@@ -6,6 +6,7 @@ if (paths[paths.length - 1] === 'signup' || paths[paths.length - 1] === 'login')
     document.body.style.minHeight = "100vh";
 }
 
+const host=window.location.protocol+'//'+window.location.host;
 // function that is executed on submitting signup form
 async function SignupSubmit() {
 
@@ -18,7 +19,7 @@ async function SignupSubmit() {
     const name = form.elements['name'].value;
 
     //fetching response with entered details
-    const response = await fetch(`http://localhost:3000/auth/signup`, {
+    const response = await fetch(`${host}/auth/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -49,7 +50,7 @@ async function LoginSubmit() {
     const email = form.elements['email'].value;
     const password = form.elements['password'].value;
 
-    const response = await fetch(`http://localhost:3000/auth/login`, {
+    const response = await fetch(`${host}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -63,7 +64,7 @@ async function LoginSubmit() {
         localStorage.setItem('token', json.authtoken);
         document.getElementById('errormsg').innerHTML = "";
         document.getElementById('errormsg').style.color = "rgb(9 241 0)";
-        window.location.replace("http://localhost:3000");
+        window.location.replace(`${host}`);
     }
     else {
         document.getElementById('verifybtn').style.display = 'block';
@@ -74,13 +75,13 @@ async function LoginSubmit() {
 
 // function for creating a blog
 async function CreateBlog() {
-
+    start();
     // getting form and authtoken
     const form = document.getElementById('createform');
     const authtoken = localStorage.getItem('token');
 
     // getting user id through fetch
-    let response = await fetch(`http://localhost:3000/auth/getuserid`, {
+    let response = await fetch(`${host}/auth/getuserid`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -91,11 +92,17 @@ async function CreateBlog() {
 
     // appending userID to form and submitting
     const ID = document.createElement('input');
+    const AUTHOR = document.createElement('input');
     ID.setAttribute('type', 'text');
+    AUTHOR.setAttribute('type', 'text');
     ID.setAttribute('value', json.id);
+    AUTHOR.setAttribute('value', json.author);
     ID.style.display = "none";
+    AUTHOR.style.display="none";
     ID.setAttribute('name', 'id');
+    AUTHOR.setAttribute('name', 'author');
     form.appendChild(ID);
+    form.appendChild(AUTHOR);
     form.submit();
 }
 
@@ -108,4 +115,27 @@ function showimage(input) {
         }
         reader.readAsDataURL(input.files[0]);
     }
+}
+function makeprogress()
+{
+    const myel=document.getElementById('cprogress-done');
+    var width=0;
+    const prog=setInterval(move,8);
+    function move(){
+        if(width==100){
+            clearInterval(prog);
+        }
+        else
+        {
+            width++;
+            myel.style.width = width+"%";
+            myel.textContent=width+"%";
+        }
+    }
+}
+function start()
+{
+    let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+    myModal.show();
+    makeprogress();
 }

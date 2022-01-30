@@ -1,7 +1,8 @@
 const express = require('express');
-const { ObjectId } = require('mongodb');
+ const { ObjectId } = require('mongodb');
 const Router = express.Router();
 const Blog = require('../Models/Blog');
+const Comment = require('../Models/Comment');
 
 // Route for viewing individual blogs
 Router.get('/view/:id', (req, res) => {
@@ -12,6 +13,19 @@ Router.get('/view/:id', (req, res) => {
         })
 })
 
+Router.get('/yourblogs/:id',(req,res)=>{
+    Blog.find()
+    .then(
+        result=>{
+            const blogs=[];
+            result.forEach(el=>{
+                if(el.user.toString()===req.params.id.toString())
+                blogs.push(el);
+            })
+            res.render('../Templates/Basic',{page:'yourblogs',blogs:blogs})
+        }
+    )
+})
 // router for editing blog
 Router.get('/edit/:id', (req, res) => {
     Blog.findById(new ObjectId(req.params.id))
@@ -58,6 +72,7 @@ Router.post('/create', (req, res) => {
         Title: req.body.Title,
         Body: req.body.Body,
         user: req.body.id,
+        author:req.body.author,
         category: req.body.cat,
         img: req.files.myfile
     }
@@ -70,4 +85,29 @@ Router.post('/create', (req, res) => {
         )
 })
 
+Router.post('/addcomment',(req,res)=>{
+    const newcmt={
+        user:req.body.user,
+        username:req.body.username,
+        body:req.body.body,
+        Blog:req.body.Blog
+    }
+    Comment(newcmt).save()
+    .then(
+        (result=>{
+            console.log('added new comment successfully\n');
+            res.json({})
+        })
+    )
+})
+
+Router.post('/getcomments',(req,res)=>
+{
+    Comment.find({Blog:req.body.Blog})
+    .then(
+        result=>{
+            res.json({comments:result})
+        }
+    )
+})
 module.exports = Router;

@@ -1,6 +1,8 @@
 # woc4.0-node-blog-app-Gangaraj-Bopparam
 
-Repository for winter-of-code 4.0, DAIICT !
+Repository for winter-of-code 4.0, DAIICT !  
+!This blog app is hosted on heroku.  
+see live demo here-https://mywocblog.herokuapp.com/  
 
 First checkpoint in project
 =======
@@ -96,3 +98,9 @@ users can login to thier registered account by entering valid email and password
 To register or to create an account, users can signup here  
 
 ![Screenshot_15](https://user-images.githubusercontent.com/96531549/151656827-abfd1ac9-48d3-4f7b-8f3f-6231abd41393.png)
+
+## Fifth Checkpoint in project  
+Added : 
+1) Authentication - now users have permission for different operations like a blog can be edited or deleted only by the owner of the blog
+2) comment section - Each blog has a comment section where user can add their comments 
+3) user should be logged in to create blog or add comments

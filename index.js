@@ -3,10 +3,8 @@ const express = require('express'); // importing express
 const fileUpload = require('express-fileupload');
 const path = require('path')
 const Blog = require('./Models/Blog');
-require('dotenv').config({ path: path.join(__dirname, '/.env') });
-const ConnectToMongoose = require('./Models/db');
-const User = require('./Models/User');
-const app = express(); // creating an instance of express
+ const ConnectToMongoose = require('./Models/db');
+ const app = express(); // creating an instance of express
 
 ConnectToMongoose(app);// connecting to db
 
@@ -37,7 +35,7 @@ app.get('/', (req, res) => {
     Blog.find()
     .then(
         result=>{
-            res.render('../Templates/basic', { page: "Home",blogs:result})
+            res.render('../Templates/Basic', { page: "Home",blogs:result})
         }
     )
 })

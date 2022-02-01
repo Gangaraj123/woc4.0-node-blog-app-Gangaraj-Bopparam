@@ -22,6 +22,6 @@ const CommentSchema = new Schema({
 })
 
 // creating Blog model with collection name blogs
-const Comment = mongoose.model('comments', CommentSchema);
+const Comment = mongoose.model('woccomments', CommentSchema);
 
 module.exports = Comment;

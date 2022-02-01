@@ -4,6 +4,7 @@ let paths = window.location.href.split('/');
 if (paths[paths.length - 1] === 'signup' || paths[paths.length - 1] === 'login') {
     document.body.style.background = "linear-gradient(to bottom, #0f0c29, #302b63, #24243e)";
     document.body.style.minHeight = "100vh";
+    document.title=paths[paths.length-1];
 }
 
 const host=window.location.protocol+'//'+window.location.host;

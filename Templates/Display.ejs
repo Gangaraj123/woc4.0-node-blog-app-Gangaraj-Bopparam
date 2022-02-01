@@ -1,11 +1,11 @@
 <!-- view page where a particular blog is displayed -->
- <div class="container my-2  rounded border border-2 border-dark"
-    style="background-color: white;width: 70%;">
-    <div class="border p-5">
-        <h1 class="my-1 mx-2" style="color: red;text-align: center;">
+ <div class="container my-4 "
+    style="background-color: white;width: 90%;border-radius: 20px;box-shadow:0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)">
+    <div class=" p-5" >
+        <h1 class="my-1" id="doctitle" style="color: red;">
             <%= blog.Title %>
         </h1>
-        <div class="mx-4 my-2">
+        <div class=" my-2">
             <h6><strong>
                     category:
                 </strong>
@@ -16,7 +16,7 @@
             <h6>
                 <strong>created:</strong>
                 <span>
-                    <%=blog.date%>
+                    <%=blog.date.toLocaleDateString()%>
                 </span>
             </h6>
             <% if (blog.author) { %>
@@ -28,9 +28,9 @@
                 </h6>
             <% } %>
         </div>
-        <div style="border-radius: 10px;" class="my-3">
+        <div style="border-radius: 10px;" class="my-3" >
 
-            <img style="width:45%;height:35%;margin: auto;display: block;border-radius: 10px;" src="data:image/;base64,
+            <img style="width:75%;height:75%;margin: auto;display: block;border-radius: 10px;" src="data:image/;base64,
             <%=blog.img.data.toString('base64')%>">
         </div>
 
@@ -105,6 +105,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
     <%- include('./Comment.ejs') %>
 </div>
 <script>
+    document.title=document.getElementById('doctitle').innerHTML;
     async function authorize(token) {
         const response = await fetch(`${window.location.protocol+"//"+window.location.host}/auth/getuserid`, {
             method: 'POST',

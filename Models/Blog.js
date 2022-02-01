@@ -33,6 +33,6 @@ const BlogSchema = new Schema({
 })
 
 // creating Blog model with collection name blogs
-const Blog = mongoose.model('testBlogs', BlogSchema);
+const Blog = mongoose.model('wocBlogs', BlogSchema);
 
 module.exports = Blog;

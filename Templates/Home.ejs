@@ -1,39 +1,45 @@
 <!-- Home page where all blogs are displayed -->
 <div class="container my-4">
     <div class="row ">
-        <% if(locals.curr_blogs && curr_blogs.length>0){%>
-            <h1 class="mx-5" style=" color: rgb(255, 255, 255);font-weight: 700;">
+        <% if(locals.blogs && blogs.length>0){%>
+            <h1 class="mx-5 modechange"
+                style=" color: rgb(0, 0, 0);font-weight: 700;">
                 All
                 Blogs</h1>
-            <% curr_blogs.forEach(blog=> { %>
-                <% console.log(blog.Title.length) %> 
-                <div class="container col-md-5 my-4 mx-4 ">
+            <% blogs.forEach(blog=> { %>
+                <div class="container col-md-5 my-4 mx-4 "
+                    style="max-width: 90%;">
+
                     <div class="card">
                         <div class="card-body">
                             <div style="float: left;" class="mx-2">
-                                <img style="width: 200px;height:180px;border-radius:5px;"
+                                <img style="width: 200px;height:180px;border-radius:5px;max-width: 100%;"
                                     src="data:image/<%=blog.img.contentType%>;base64,
                         <%=blog.img.data.toString('base64')%>">
                             </div>
-                            <h5 class="card-title">
-                                <%=blog.Title %>
-                            </h5>
-                            <p class="card-text">
-                                <%=blog.Body.slice(0,(blog.Title.length>60?50:70))+"...." %>
-                            </p>
-                            <p>
-                                <strong>category:</strong>
-                                <%= blog.category%>
-                                    <a href="/blog/view/<%=blog._id%>"
-                                        class="btn-sm btn-success float-end">View
-                                        Blog</a>
-                            </p>
+                            <div class="mx-2" style="min-width: 50%;">
 
+                                <h5 class="card-title">
+                                    <%=blog.Title %>
+                                </h5>
+                                <p class="card-text">
+                                    <%=blog.Body.slice(0,(blog.Title.length>
+                                        60?50:60))+"...." %>
+                                </p>
+                                <p>
+                                    <strong>category:</strong>
+                                    <%= blog.category%>
+                                        <a href="/blog/view/<%=blog._id%>"
+                                            class="btn-sm btn-success float-end">View
+                                            Blog</a>
+                                </p>
+
+                            </div>
                         </div>
                     </div>
                 </div>
                 <% }) }else {%>
-                    <div class="container m-4">
+                    <div class="container m-4 modechange">
                         <h4>
                             There are No blogs to show.
                         </h4>
@@ -46,3 +52,6 @@
 
     </div>
 </div>
+<footer class="container footer" style="text-align: center;">
+    <p>© Gangaraju Bopparam - DAIICT</p>
+</footer>

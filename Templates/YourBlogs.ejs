@@ -1,0 +1,49 @@
+<!-- Home page where all blogs are displayed --> 
+<div class="container my-4">
+    <div class="row ">
+        <% if(locals.blogs && blogs.length>0){%>
+            <h1 class="mx-5 modechange" style=" color: rgb(0, 0, 0);font-weight: 700;">
+                Your Blogs</h1>
+            <% blogs.forEach(blog=> { %>
+                <div class="container col-md-5 my-4 mx-4 ">   
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="float: left;" class="mx-2">
+                                <img style="width: 200px;height:180px;border-radius:5px;"
+                                    src="data:image/<%=blog.img.contentType%>;base64,
+                        <%=blog.img.data.toString('base64')%>">
+                            </div>
+                            <h5 class="card-title">
+                                <%=blog.Title %>
+                            </h5>
+                            <p class="card-text">
+                                <%=blog.Body.slice(0,(blog.Title.length>60?50:70))+"...." %>
+                            </p>
+                            <p>
+                                <strong>category:</strong>
+                                <%= blog.category%>
+                                    <a href="/blog/view/<%=blog._id%>"
+                                        class="btn-sm btn-success float-end">View
+                                        Blog</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <% }) }else {%>
+                    <div class="container m-4">
+                        <h4>
+                            There are No blogs to show.
+                        </h4>
+                        <p>Creat a blog here.</p>
+                        <a href="/blog/create" class="btn btn-primary">
+                            create a new blog
+                        </a>
+                    </div>
+                    <% } %>
+
+    </div>
+</div>
+<script>
+    document.title="Your blogs"
+</script>

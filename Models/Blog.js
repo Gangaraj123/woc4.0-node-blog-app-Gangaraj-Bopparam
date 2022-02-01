@@ -6,6 +6,10 @@ const BlogSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    author:{
+        type:String,
+        required:false
+    },
     Title: {
         type: String,
         required: true
@@ -29,6 +33,6 @@ const BlogSchema = new Schema({
 })
 
 // creating Blog model with collection name blogs
-const Blog = mongoose.model('testBlogs', BlogSchema);
+const Blog = mongoose.model('wocBlogs', BlogSchema);
 
 module.exports = Blog;

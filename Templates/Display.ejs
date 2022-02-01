@@ -1,11 +1,11 @@
 <!-- view page where a particular blog is displayed -->
-<div class="container my-2  rounded border border-2 border-dark"
-    style="background-color: white;width: 70%;">
-    <div class="border p-5">
-        <h1 class="my-1 mx-2" style="color: red;">
+ <div class="container my-4 "
+    style="background-color: white;width: 90%;border-radius: 20px;box-shadow:0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)">
+    <div class=" p-5" >
+        <h1 class="my-1" id="doctitle" style="color: red;">
             <%= blog.Title %>
         </h1>
-        <div class="mx-4">
+        <div class=" my-2">
             <h6><strong>
                     category:
                 </strong>
@@ -16,13 +16,21 @@
             <h6>
                 <strong>created:</strong>
                 <span>
-                    <%=blog.date%>
+                    <%=blog.date.toLocaleDateString()%>
                 </span>
             </h6>
+            <% if (blog.author) { %>
+                <h6>
+                    <strong>created by :</strong>
+                    <span>
+                        <%=blog.author%>
+                    </span>
+                </h6>
+            <% } %>
         </div>
-        <div style="border-radius: 10px;" class="my-3">
+        <div style="border-radius: 10px;" class="my-3" >
 
-            <img style="width:45%;height:35%;margin: auto;display: block;" src="data:image/<%=blog.img.contentType%>;base64,
+            <img style="width:75%;height:75%;margin: auto;display: block;border-radius: 10px;" src="data:image/;base64,
             <%=blog.img.data.toString('base64')%>">
         </div>
 
@@ -31,7 +39,7 @@
         </p>
 
         <div class="d-flex justify-content-center">
-            <a href="/blog/edit/<%=blog._id%>">
+            <a href="/blog/edit/<%=blog._id%>" id="editbtn" style="display:none">
                 <button class="btn btn-warning mx-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" fill="currentColor"
@@ -43,8 +51,8 @@
                     </svg> Edit
                 </button>
             </a>
-            <button class="btn btn-danger mx-1" type="button"
-                data-bs-toggle="modal" data-bs-target="#exampleModal"><svg
+            <button class="btn btn-danger mx-1" id="deletebtn" style="display: none;" type="button"
+                data-bs-toggle="modal" data-bs-target="#exampleModal2"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                     fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                     <path
@@ -52,7 +60,7 @@
                     <path fill-rule="evenodd"
                         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                 </svg> Delete</button>
-            <div class="modal fade" id="exampleModal" tabindex="-1"
+            <div class="modal fade" id="exampleModal2" tabindex="-1"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -70,8 +78,9 @@
                             <button type="button" class="btn btn-secondary"
                                 data-bs-dismiss="modal">Close</button>
                             <a href="/blog/delete/<%=blog._id%>">
-                                <button type="button"
-                                    class="btn btn-danger">confirm</button>
+                                <button type="button" onclick="start()"
+                                    class="btn btn-danger" data-bs-dismiss="modal"
+                                    aria-label="Close">confirm</button>
                             </a>
                         </div>
                     </div>
@@ -80,3 +89,37 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="height:200px;">
+            <h3  id="creatingmsg">Deleting...</h3>
+            <div class="cprogress">
+                <div class="cprogress-done" id="cprogress-done">50%
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <%- include('./Comment.ejs') %>
+</div>
+<script>
+    document.title=document.getElementById('doctitle').innerHTML;
+    async function authorize(token) {
+        const response = await fetch(`${window.location.protocol+"//"+window.location.host}/auth/getuserid`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                 'authtoken':token
+            }
+        });
+        let json = await response.json();
+        if (json.success && json.id==="<%=blog.user%>") {
+         document.getElementById('editbtn').style.display="block";
+         document.getElementById('deletebtn').style.display="block"
+        }
+    }
+    if(localStorage.getItem('token'))
+    authorize(localStorage.getItem('token'));
+</script>

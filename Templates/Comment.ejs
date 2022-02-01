@@ -1,0 +1,118 @@
+<section>
+    <div class="container my-4" style="width: 80%;margin:auto">
+        <div class="row">
+            <div class="col-sm-5 col-md-6 col-12 pb-4" id='cmtsect'>
+                <h1 style="font-size: xxx-large;color:purple;
+                font-weight: 700">Comments</h1>
+
+            </div>
+            <div
+                class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                <form id="algin-form" onsubmit="event.preventDefault();addcmt()">
+                    <div class="form-group">
+                        <h4>Leave a comment</h4> <label
+                            for="message">comment</label> <textarea name="msg"
+                            id="cmtnew" msg cols="30" rows="5"
+                            placeholder="Your comment"
+                            class="form-control"
+                            style="background-color: black;color: white;"
+                            required></textarea>
+                    </div>
+                    <div class="form-group my-1 d-flex justify-content-center" style="width: 50%;margin:auto">
+                        <button type="submit" id="post"
+                        style="background-color: #d1b91d;
+                        border-color: #f1cb6d;"
+                            class="btn btn-sm btn-primary">Post Comment</button>
+                        </div>
+                        <p style="text-align: center;">
+                            <a href="/auth/login" style="color:green">
+                                Login 
+                            </a>
+                            to add comment
+                        </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    if(!localStorage.getItem('token'))
+    {
+        document.getElementById('post').disabled=true;
+    }
+    function makeComment(cmt, isdark) {
+        let myel = document.createElement('div');
+        var today = new Date(cmt.date);
+        console.log(today)
+        if (isdark)
+            myel.classList.add('darker');
+        else
+            myel.classList.add('comment');
+        myel.classList.add('mt-4');
+        myel.classList.add('text-justify');
+        myel.innerHTML = `<h4 style="color:#27ab07">${cmt.username}</h4> <span>-
+             ${today.toLocaleDateString()
+            }</span> <br>
+                    <p>${cmt.body}</p>`
+        return myel;
+    }
+    async function DispComments() {
+        const Blog = window.location.pathname.split('/').at(-1);
+
+        let response = await fetch(`${window.location.protocol + "//" + window.location.host}/blog/getcomments`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            ,
+            body: JSON.stringify({ Blog })
+
+        });
+        let json = await response.json();
+        let comments = json.comments;
+         const cmtsect = document.getElementById('cmtsect');
+         if(comments&&comments.length==0)
+         {
+             const empt=document.createElement('div');
+             empt.classList.add('container');
+             empt.innerHTML='<h4>No comments to show</h4>'
+             cmtsect.appendChild(empt);
+         }
+        for (let i = 0; i < comments.length; i++) {
+            if (i % 2)
+                cmtsect.appendChild(makeComment(comments[i], true));
+            else
+                cmtsect.appendChild(makeComment(comments[i], false));
+        }
+    }
+    
+    async function addcmt() {
+        document.getElementById('post').innerHTML='posting...';
+        const authtoken = localStorage.getItem('token');
+        // getting user id through fetch
+        let response = await fetch(`${host}/auth/getuserid`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'authtoken': authtoken
+            }
+        });
+        let json = await response.json();
+        const body = document.getElementById('cmtnew').value;
+        const user = json.id;
+        const username = json.author;
+        const Blog = window.location.pathname.split('/').at(-1);
+
+        response = await fetch(`${host}/blog/addcomment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'authtoken': authtoken
+            }
+            ,
+            body: JSON.stringify({ user, username, Blog, body })
+        });
+        window.location.reload();
+    }
+    DispComments();
+</script>

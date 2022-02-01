@@ -20,6 +20,6 @@ const UserSchema = new Schema({
 });
 
 // creating Blog model with collection name blogs
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('wocuser', UserSchema);
 
 module.exports = User;

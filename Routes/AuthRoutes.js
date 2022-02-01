@@ -64,9 +64,8 @@ router.post('/login', async (req, res) => {
         else {
             const data = {
                 user: {
-                    id: user.id
-                }
-
+                    id: user.id,
+                 }
             }
             // send an authorisation token
             const authtoken = jwt.sign(data, secret);
@@ -77,8 +76,14 @@ router.post('/login', async (req, res) => {
 
 // request to get user id using authorisation token provided
 router.post('/getuserid', async (req, res) => {
+    if(!req.headers.authtoken){
+    res.json({success:false})}
+    else{
     const token = req.headers.authtoken;
     const data = jwt.verify(token, secret);
-    res.json({ id: data.user.id });
+    User.findById(data.user.id).then(result=>{
+        res.json({ success:true,id: data.user.id ,author:result.name});
+    })
+    }
 })
 module.exports = router;
